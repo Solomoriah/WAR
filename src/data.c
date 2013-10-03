@@ -37,6 +37,7 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "war.h"
@@ -128,7 +129,6 @@ int loadmap()
 	FILE *fp;
 	char inbuf[128];
 	int rows, cols, i, j;
-	char *malloc();
 
 	/* initialize map arrays */
 
@@ -194,7 +194,6 @@ int loadsave()
 	FILE *fp;
 	char inbuf[128], *p;
 	int cnt, ttcnt, ncnt, acnt, mcnt, nt, i, j;
-	char *malloc();
 	size_t nbytes;
 	int a_nation, a_r, a_c, a_combat, a_hero,
 		a_move_rate, a_move_tbl, a_special_mv, a_eparm1;

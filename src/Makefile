@@ -1,7 +1,7 @@
 
 CC = gcc
 CFLAGS = -g -DCURSES_DRIVER -DANSI_DRIVER -DWARTERM_DRIVER -DAUTHPGM='"/home/$(USER)/bin/authpgm \"%s\" \"%s\""'
-TARGETS = war warupd warnews warmap wartool
+TARGETS = ../bin/war ../bin/warupd ../bin/warnews ../bin/warmap ../bin/wartool
 
 all: $(TARGETS)
 
@@ -23,19 +23,20 @@ TOOLOBJS = wartool.o data.o execpriv.o execsupp.o \
     global.o stdver.o display.o dispsupp.o savegame.o \
     genio.o ansidrv.o wtermdrv.o cursdrv.o
 
-war: $(WAROBJS)
-	gcc -o war $(WAROBJS) -lncurses
+../bin/war: $(WAROBJS)
+	gcc -o ../bin/war $(WAROBJS) -lncurses
 
-warupd: $(UPDOBJS)
+../bin/warupd: $(UPDOBJS)
+	gcc -o ../bin/warupd $(UPDOBJS)
 
-warnews: $(NEWSOBJS)
-	gcc -o warnews $(NEWSOBJS) -lncurses
+../bin/warnews: $(NEWSOBJS)
+	gcc -o ../bin/warnews $(NEWSOBJS) -lncurses
 
-warmap: $(MAPOBJS)
-	gcc -o warmap $(MAPOBJS) -lncurses
+../bin/warmap: $(MAPOBJS)
+	gcc -o ../bin/warmap $(MAPOBJS) -lncurses
 
-wartool: $(TOOLOBJS)
-	gcc -o wartool $(TOOLOBJS) -lncurses
+../bin/wartool: $(TOOLOBJS)
+	gcc -o ../bin/wartool $(TOOLOBJS) -lncurses
 
 clean:
 	rm -f $(TARGETS) *.o

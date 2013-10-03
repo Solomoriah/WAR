@@ -50,7 +50,6 @@ static int index_cnt = 0;
 static long pages[MAXINDEX];
 static int page_cnt = 0;
 
-
 /*
 	reader() displays a list of headings from the given file.  the
 	user may page or "arrow" up or down to view long listings.  when
@@ -198,7 +197,7 @@ int pos, mode;
 		pages[page_cnt++] = ftell(fp);
 
 		for(i = 0; i < 15; i++) {
-			if(!getline(dummy, fp)) {
+			if(!rgetline(dummy, fp)) {
 				done = 1;
 				break;
 			}
@@ -291,7 +290,7 @@ FILE *fp;
 
 	rewind(fp);
 
-	for(pos = ftell(fp); getline(inbuf, fp); pos = ftell(fp))
+	for(pos = ftell(fp); rgetline(inbuf, fp); pos = ftell(fp))
 		if(strncmp(inbuf, HEADERMARK, len) == 0) {
 			killed[index_cnt] = 0;
 			r_index[index_cnt++] = pos + len;
@@ -300,16 +299,14 @@ FILE *fp;
 
 
 /*
-	getline() reads in a maximum of 77 characters, but always reads to
+	rgetline() reads in a maximum of 77 characters, but always reads to
 	end-of-line.  '\r' and '\n' characters are not included in the
 	string read.
 
 	returns 1 if a line was read, or 0 if at EOF.
 */
 
-int getline(s, fp)
-char *s;
-FILE *fp;
+int rgetline(char *s, FILE *fp)
 {
 	int ch, i;
 
@@ -354,7 +351,7 @@ FILE *fp;
 			else
 				gputch(' ');
 			fseek(fp, r_index[pos+i], 0);
-			getline(inbuf, fp);
+			rgetline(inbuf, fp);
 			gputs(inbuf);
 		} else if(pos + i == -1)
 			gputs("*** Top of List ***");
@@ -383,7 +380,7 @@ int pg;
 	len = strlen(HEADERMARK);
 
 	for(i = 0; i < 19; i++) {
-		if(!getline(inbuf, fp))
+		if(!rgetline(inbuf, fp))
 			break;
 
 		if(strncmp(inbuf, HEADERMARK, len) == 0)
@@ -443,7 +440,7 @@ char *fn;
 
 			done = 0;
 
-			while(getline(inbuf, in) && !done)
+			while(rgetline(inbuf, in) && !done)
 				if(strncmp(inbuf, HEADERMARK, len) == 0)
 					done = 1;
 				else {
@@ -502,3 +499,4 @@ int mode;
 
 
 /* end of file. */
+

@@ -38,6 +38,7 @@
 
 
 #include <curses.h>
+#include <stdlib.h>
 #include <sys/stat.h>
 
 #include "war.h"

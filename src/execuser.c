@@ -37,6 +37,7 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 
 #include "war.h"
 #include "warext.h"
