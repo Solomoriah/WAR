@@ -1,0 +1,82 @@
+move-army 148 2 46 3 148
+move-army 297 2 46 3 297
+move-army 312 2 46 3 312
+move-army 159 2 46 3 159
+move-army 106 2 46 3 106
+move-army 39 2 46 3 39
+move-army 331 2 46 3 331
+move-army 203 4 46 3 203
+move-army 103 2 45 4 103
+move-army 215 2 45 4 215
+move-army 223 2 45 4 223
+move-army 231 2 45 4 231
+move-army 243 2 45 4 243
+move-army 256 2 45 4 256
+move-army 263 2 45 4 263
+move-army 274 2 45 4 274
+move-army 276 2 45 4 276
+move-army 217 3 45 6 217
+move-army 296 3 45 6 296
+move-army 311 3 45 6 311
+move-army 172 3 45 6 172
+move-army 111 3 45 6 111
+move-army 93 3 45 6 93
+move-army 330 3 45 6 330
+move-army 158 9 45 6 158
+move-army 197 9 45 6 197
+move-army 216 3 42 59 216
+move-army 195 3 42 59 195
+move-army 232 3 42 59 232
+move-army 244 3 42 59 244
+move-army 164 3 42 59 164
+move-army 264 3 42 59 264
+move-army 275 3 42 59 275
+move-army 265 3 42 59 265
+move-army 48 1 41 59 124
+move-army 236 1 41 59 70
+move-army 124 4 41 59 124
+move-army 70 4 41 59 70
+move-army 249 4 41 59 249
+move-army 235 4 41 59 235
+move-army 222 2 41 59 222
+move-army 261 2 41 59 261
+move-army 260 2 41 59 260
+move-army 48 2 42 59 48
+move-army 236 2 42 59 236
+move-army 230 4 44 3 230
+move-army 262 4 44 3 262
+move-army 221 4 44 3 221
+move-army 201 4 44 3 201
+move-army 329 4 44 3 329
+move-army 210 1 28 4 210
+move-army 226 1 28 4 226
+move-army 252 1 28 4 252
+move-army 269 1 28 4 269
+move-army 278 1 28 4 278
+move-army 307 1 28 4 307
+move-army 200 1 28 4 200
+move-army 40 8 19 22 183
+move-army 1 8 19 22 183
+move-army 183 10 19 22 183
+move-army 52 8 19 22 183
+move-army 80 8 19 22 183
+move-army 206 8 19 22 183
+move-army 81 4 19 22 183
+move-army 27 4 19 22 183
+move-army 173 6 19 22 183
+kill-army 180
+kill-army 173
+kill-army 27
+kill-army 81
+kill-army 126
+kill-army 72
+kill-army 18
+control-city 1 18 1
+kill-army 105
+kill-army 127
+kill-army 54
+kill-army 146
+kill-army 92
+kill-army 38
+control-city 1 38 1
+global-update

@@ -1,0 +1,64 @@
+NOTE:  The following is the old todo list for the program development.
+It is not current, but has been retained for historical purposes.
+
+-------------------------------------------------------------------------------
+
+Things to Do:
+	Army stat viewer
+	WAR and WARANSI -- mail count message
+	Implement Rogue nation (#27).
+		-- Captured Rogue cities will rebel if left unoccupied.
+		-- Rogue armies move one space per turn at random.  They
+			are 30% likely to leave a Rogue city.
+	Finish WARTOOL
+		-- City editor
+		-- Army editor
+		-- Troop-type editor
+		-- Moving city - cancellation message
+    Improve Control File docs in manual.
+
+Things Done:
+	Update manuals
+		-- IBMPC setting
+		-- MAPCHARS setting
+	Implement CONTROL.WAR
+		-- Set ANSI vs. DIRECT mode here.
+		-- Execute commands in EXECCTRL.C (using EXECSUPP.C
+			exactly as the other EXEC*.C modules).
+		-- Can change default game directory.
+		-- Can specify alternate titlescreen file.
+		-- Can specify values for IBMPC and MAPCHARS.
+		-- If not found, options will be as in old WAR!.
+		-- WAR programs should accept multiple arguments.  Each
+			argument will be the name of a control file.
+		-- ???
+	True Cursor Optimization in ANSI version
+	Implement WARTOOL
+		-- Move cities
+		-- Move armies
+		-- Clear turns (empty the world)
+	Hero desertion
+		-- If hero's side in battle is overmatched, untested heros
+			will desert if a roll of 1dTotal is less than or equal
+			to 1/2 the other side's Ctot.  Deserters are 50% likely
+			to join the other side, otherwise they disappear (or 
+			become Rogues... see below).
+	Verify hero desertion
+	Un-comment conditions in hero desertion
+	Fix capture message ... Indigo is NOT the capitol of Militia!
+	Rogue stage 1 completed -- Nation 27 cities may be created
+		-- Rogue cities have a ? nation mark.
+		-- Rogue armies outside a Rogue city have a blank nation
+			mark.
+		-- Rogue cities are not considered neutral and may not
+			be the capitol of a player nation.
+		-- A Rogue city captured by a player may not be able to
+			produce the full range of armies that the Rogue nation
+			could produce in the city.
+	Ship pickups from shore
+		-- Allow ships to beach, as follows:
+			If an army with water movement attempts to move from
+			water to non-allowed terrain, movement is allowed at
+			a cost of 2 times water movement cost.
+	Alternate Title Screen file.
+

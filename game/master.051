@@ -1,0 +1,94 @@
+name-army 40 'Jang'
+move-army 40 8 26 17 183
+move-army 1 8 26 17 183
+move-army 183 10 26 17 183
+move-army 52 8 26 17 183
+move-army 80 8 26 17 183
+move-army 206 8 26 17 183
+move-army 81 4 26 17 183
+move-army 27 4 26 17 183
+move-army 173 6 26 17 183
+name-army 7 'Jorg'
+name-army 25 'Jam'
+name-army 2 'Jurg'
+move-army 213 4 39 17 213
+move-army 219 4 39 17 219
+move-army 228 4 39 17 228
+move-army 241 4 39 17 241
+move-army 254 4 39 17 254
+move-army 259 4 39 17 259
+move-army 272 4 39 17 272
+move-army 284 4 39 17 284
+move-army 234 4 39 17 234
+move-army 292 4 39 17 292
+move-army 242 10 41 30 242
+move-army 190 4 41 30 242
+move-army 19 4 41 30 242
+move-army 74 6 41 30 242
+move-army 61 6 41 30 242
+move-army 26 6 41 30 242
+move-army 60 6 41 30 242
+move-army 23 6 41 30 242
+move-army 178 6 41 30 242
+move-army 236 1 40 58 124
+move-army 124 2 40 58 124
+move-army 70 2 40 58 70
+move-army 249 2 40 58 249
+move-army 235 2 40 58 235
+move-army 102 4 40 58 102
+move-army 48 2 41 57 48
+move-army 222 2 41 57 222
+move-army 261 2 41 57 261
+move-army 260 2 41 57 260
+move-army 117 2 41 57 117
+move-army 109 2 41 57 109
+move-army 169 2 41 57 169
+move-army 48 2 40 58 48
+move-army 222 2 40 58 222
+move-army 261 2 40 58 261
+move-army 260 2 40 58 260
+move-army 186 4 43 57 186
+move-army 216 3 43 57 186
+move-army 195 3 43 57 186
+move-army 232 3 43 57 186
+move-army 244 3 43 57 186
+move-army 164 3 43 57 186
+move-army 264 3 43 57 186
+move-army 275 3 43 57 186
+move-army 265 3 43 57 186
+move-army 186 8 50 53 186
+move-army 13 10 31 45 13
+move-army 47 10 31 45 47
+move-army 132 10 31 45 132
+move-army 12 3 20 48 12
+move-army 161 3 20 48 161
+move-army 198 3 20 48 198
+move-army 188 3 20 48 188
+move-army 199 3 20 48 199
+move-army 53 3 20 48 53
+move-army 189 3 20 48 189
+move-army 107 3 20 48 107
+move-army 201 2 49 3 201
+move-army 10 2 49 3 10
+move-army 16 2 49 3 16
+move-army 157 2 49 3 157
+move-army 6 2 49 3 6
+kill-army 24
+kill-army 6
+kill-army 157
+kill-army 159
+kill-army 155
+kill-army 16
+kill-army 10
+set-eparm -1 1
+kill-army 201
+kill-army 130
+kill-army 129
+kill-army 102
+kill-army 172
+kill-army 147
+kill-army 93
+kill-army 39
+control-city 1 39 1
+change-army 48 3 2
+global-update

@@ -1,0 +1,19 @@
+Solomoriah's WAR!
+Copyright 1993, 1994, 2001, 2013 Chris Gonnerman
+All rights reserved.
+See included LICENSE file for details.
+
+Solomoriah's WAR! is an old (20 years!) wargame I wrote for use on a DOS BBS,
+then updated for use on Coherent's Unix clone, and eventually on Linux.  It has
+a crufty old BBS-compatible interface and simple turn-based gameplay.  Movement
+is hidden; the order in which each turn plays out (i.e. Initiative) is random
+each turn, so you never know if you're going to swoop in on the other guy, or
+he's going to swoop in on you.
+
+These programs are written in K&R C, with a small amount of code having been
+updated slightly.  Later iterations of the program suite added some Python
+scripts to assist with Linux BBS support.
+
+Though this program has been around 20 years, version 4.4 is the first public
+release.
+

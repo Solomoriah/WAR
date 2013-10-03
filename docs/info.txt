@@ -1,0 +1,74 @@
+NOTE:  The following is the earliest copy of the program specifications which
+still exist.  I've left them as-is, spelling errors and all, for historical
+purposes.
+
+-------------------------------------------------------------------------------
+
+WAR! will use the following modules:
+
+- The Data module will store and manage the tables.
+- The Screen module will draw screens from information in the Data module.
+- The Executive module will read and execute (in both priveledged and
+  user mode) commands from command files.
+
+
+Two programs will be used:  The WAR program and the WARUPD program.  WAR
+will provide the player-interface and WARUPD will run turn-updates.
+
+The user-interface WAR will load the map file, MAP, then the game save file
+GAME.SAV, then execute the MASTER file in priveledged mode, and last
+execute the %UID%.CMD file in priveledged mode.
+
+The WARUPD program will load the MAP and GAME.SAV files, execute the MASTER
+file in priveledged mode, and then execute player files in random order in
+user mode.  User mode execution will result in the actual successful
+commands being appended to MASTER.
+
+
+RULES:
+
+Armies may move as long as they have 1 move-point or more, have enough
+move-points to enter the target sector, are not in an enemy city, and are
+not in the same sector with an enemy army.
+
+NPC cities produce the first available troop-type automatically, assigning
+UID 0 (God) as the owning player id.  God does not normally move armies,
+but the game master may do so.
+
+Armies may be produced as long as there is space in the target city to
+place them, and money available to pay for them.  Unpaid armies desert.
+
+A friendly city can contain 12 armies.  A non-city sector can contain 10
+armies, as can an unfriendly city.  Cities add a flat amount to the combat
+value of friendly armies.
+
+
+WAR! game structures:
+
+
+Release 0
+
+- Map
+	an array of MAPSZ*MAPSZ characters
+
+- Cities
+	name, army types and time to produce (and last instance), owner
+
+- Trooptypes
+	type-name, combat factor, movement rate, movement table
+	should copy stats to army list when created (so all combat can run
+	from the army table).
+
+- Nations
+
+- Armies
+	after loading the army list and updating the map, each nation's
+	army array should be loaded with the pointers to the nation's armies.
+
+
+Release 1
+
+- Move_Table
+	a table of movement costs for each terrain type.
+	individual armies/units have different tables.
+

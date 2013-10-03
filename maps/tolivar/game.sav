@@ -1,0 +1,367 @@
+G 1 55 23 0 9 g0 Solomoriah's_World
+
+Overlord: U0 C0 M0 I0
+
+Indigo: C1 N0 @5:4 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+21 6 0
+
+Lavender: C1 N0 @7:2 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+14 6 0
+
+Crimson: C1 N0 @3:5 P0:1 D2 T3
+0 1 0
+1 2 0
+2 2 0
+3 4 0
+
+Saffron: C1 N0 @9:8 P0:1 D2 T3
+0 1 0
+1 2 0
+2 2 0
+-1 -1 0
+
+Verdant: C1 N0 @6:10 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+14 6 0
+
+Metropolis: C2 N0 @28:10 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+3 4 0
+
+Gotham: C2 N0 @29:5 P0:1 D2 T3
+0 1 0
+1 2 0
+2 2 0
+-1 -1 0
+
+Keystone City: C2 N0 @31:8 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+20 5 0
+
+Central City: C2 N0 @35:9 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+14 6 0
+
+Heliochrysum: C3 N0 @32:24 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+3 4 0
+
+Portulaca: C3 N0 @33:29 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+3 4 0
+
+Gaillardia: C3 N0 @38:24 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+14 6 0
+
+Coreopsis: C3 N0 @36:21 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+21 6 0
+
+Delphineum: C3 N0 @33:19 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+14 6 0
+
+Ruby: C4 N0 @14:23 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+3 4 0
+
+Amber: C4 N0 @16:20 P0:1 D2 T3
+0 1 0
+1 2 0
+2 2 0
+-1 -1 0
+
+Emerald: C4 N0 @16:28 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+14 6 0
+
+Diamond: C4 N0 @18:25 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+14 6 0
+
+Sapphire: C4 N0 @19:22 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+20 5 0
+
+Zhentil Keep: C5 N0 @40:18 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+3 4 0
+
+Shadowdale: C5 N0 @42:20 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+14 6 0
+
+Silverdale: C5 N0 @45:22 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+20 6 0
+
+Battledale: C5 N0 @48:24 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+14 6 0
+
+Dread: C6 N0 @38:0 P0:1 D3 T2
+6 1 0
+7 4 0
+-1 -1 0
+-1 -1 0
+
+Doom: C6 N0 @39:4 P0:1 D3 T3
+6 1 0
+7 4 0
+15 6 0
+-1 -1 0
+
+Despair: C6 N0 @42:3 P0:1 D3 T2
+6 1 0
+13 3 0
+-1 -1 0
+-1 -1 0
+
+Death: C6 N0 @43:9 P0:1 D3 T2
+6 1 0
+7 5 0
+-1 -1 0
+-1 -1 0
+
+Agony: C6 N0 @45:4 P0:1 D3 T3
+6 1 0
+13 3 0
+15 6 0
+-1 -1 0
+
+Gloom: C6 N0 @49:3 P0:1 D3 T2
+6 1 0
+7 5 0
+-1 -1 0
+-1 -1 0
+
+Iron: C7 N0 @55:8 P0:1 D3 T4
+0 1 0
+1 2 0
+8 3 0
+14 6 0
+
+Gold: C7 N0 @54:14 P0:1 D3 T4
+0 1 0
+1 2 0
+8 3 0
+20 5 0
+
+Silver: C7 N0 @58:13 P0:1 D3 T4
+0 1 0
+1 2 0
+8 3 0
+14 6 0
+
+Tin: C7 N0 @57:10 P0:1 D3 T3
+0 1 0
+1 2 0
+8 3 0
+-1 -1 0
+
+Lead: C7 N0 @51:13 P0:1 D3 T3
+0 1 0
+1 2 0
+8 3 0
+-1 -1 0
+
+Nyarlathotep: C8 N0 @34:55 P0:1 D2 T2
+9 1 0
+12 3 0
+-1 -1 0
+-1 -1 0
+
+Yogsothoth: C8 N0 @30:52 P0:1 D2 T2
+9 1 0
+12 3 0
+-1 -1 0
+-1 -1 0
+
+Cthulhu: C8 N0 @31:57 P0:1 D2 T2
+9 1 0
+13 3 0
+-1 -1 0
+-1 -1 0
+
+Hastor: C8 N0 @28:59 P0:1 D2 T2
+9 1 0
+13 3 0
+-1 -1 0
+-1 -1 0
+
+Olan: C9 N0 @42:59 P0:1 D3 T2
+4 1 0
+10 3 0
+-1 -1 0
+-1 -1 0
+
+Kaxandar: C9 N0 @40:58 P0:1 D3 T2
+4 1 0
+10 3 0
+-1 -1 0
+-1 -1 0
+
+Torgar: C9 N0 @46:60 P0:1 D3 T2
+4 1 0
+10 3 0
+-1 -1 0
+-1 -1 0
+
+Arras Charka: C10 N0 @18:43 P0:1 D2 T3
+0 1 0
+1 2 0
+21 6 0
+-1 -1 0
+
+Derzon: C10 N0 @17:51 P0:1 D2 T3
+0 1 0
+1 2 0
+2 2 0
+-1 -1 0
+
+Ekosiak: C10 N0 @20:47 P0:1 D2 T4
+0 1 0
+1 2 0
+2 2 0
+3 4 0
+
+Ish-Tako: C10 N0 @16:46 P0:1 D2 T4
+0 1 0
+1 2 0
+8 3 0
+14 6 0
+
+Chishata: C10 N0 @23:50 P0:1 D2 T4
+0 1 0
+1 2 0
+8 3 0
+14 6 0
+
+Qualinesti: C11 N0 @53:54 P0:1 D2 T4
+17 1 0
+5 2 0
+11 2 0
+20 4 0
+
+Sylvanesti: C11 N0 @56:55 P0:1 D2 T4
+17 1 0
+5 2 0
+11 2 0
+16 7 0
+
+Rathwynn: C11 N0 @62:58 P0:1 D2 T3
+17 1 0
+5 2 0
+11 2 0
+-1 -1 0
+
+Caledon: C11 N0 @60:54 P0:1 D2 T4
+17 1 0
+5 2 0
+11 2 0
+16 7 0
+
+Alfheim: C11 N0 @58:51 P0:1 D2 T4
+17 1 0
+5 2 0
+11 2 0
+16 7 0
+
+Atlantis: C12 N0 @49:41 P0:1 D2 T3
+18 1 0
+19 2 0
+22 8 0
+-1 -1 0
+
+Mu: C12 N0 @49:37 P0:1 D2 T3
+18 1 0
+19 2 0
+22 8 0
+-1 -1 0
+
+Poseidon: C12 N0 @46:42 P0:1 D2 T3
+18 1 0
+19 2 0
+22 8 0
+-1 -1 0
+
+Neptune: C12 N0 @44:38 P0:1 D2 T3
+18 1 0
+19 2 0
+22 8 0
+-1 -1 0
+
+Lt. Infantry: C2 M6:0:0
+Hv. Infantry: C3 M4:0:0
+Lt. Cavalry: C2 M12:1:0
+Hv. Cavalry: C3 M8:1:0
+Dwarf Legion: C3 M4:2:0
+Elven Archers: C3 M6:3:0
+Zombie Legion: C3 M3:0:0
+Wraith Horde: C4 M6:4:0
+Elite Troopers: C4 M4:0:0
+Gug: C3 M4:0:0
+Dwarf Miners: C4 M4:5:0
+Scout: C1 M8:6:0
+Byakhee: C2 M7:4:2
+Ghouls: C3 M5:0:0
+Navy: C2 M10:7:3
+Undead Navy: C3 M8:7:3
+Elf Clipper: C2 M12:7:3
+Elf Infantry: C2 M8:3:0
+Mermen: C2 M6:7:0
+Tritons: C3 M4:7:0
+Pegasus: C2 M10:4:1
+Hippogryff: C3 M8:4:1
+Leviathan: C5 M4:8:1
+
+0 1 2 2 4 
+0 1 2 3 0 
+0 1 2 1 2 
+0 1 1 2 4 
+1 1 1 1 2 
+0 1 2 2 3 
+0 1 1 1 2 
+1 0 0 0 0 
+1 1 2 3 4 
