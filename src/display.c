@@ -97,9 +97,11 @@ char *theeye[] = {
     "       ;@@`                   ",
 };
 
-char *instance();
-
 char war_title[129] = "";
+
+
+void mailer(int from, int to);
+char *instance();
 
 
 /* nation id must be located/created at a higher level. */

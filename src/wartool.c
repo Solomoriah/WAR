@@ -375,13 +375,13 @@ clearall()
 }
 
 
-mailer()
+void mailer()
 {
 	;
 }
 
 
-reader()
+void reader()
 {
 	;
 }

@@ -1,7 +1,7 @@
 /*
-	Solomoriah's WAR!
+    Solomoriah's WAR!
 
-	reader.c -- news/mail reader
+    reader.c -- news/mail reader
 
     Copyright 1993, 1994, 2001, 2013 Chris Gonnerman
     All rights reserved.
@@ -52,452 +52,438 @@ static long pages[MAXINDEX];
 static int page_cnt = 0;
 
 /*
-	reader() displays a list of headings from the given file.  the
-	user may page or "arrow" up or down to view long listings.  when
-	a heading is selected with the (v)iew command, viewer() is called.
+    reader() displays a list of headings from the given file.  the
+    user may page or "arrow" up or down to view long listings.  when
+    a heading is selected with the (v)iew command, viewer() is called.
 
-	mode is 0 for news, 1 for mail.  mode 1 enables deletion of headings.
+    mode is 0 for news, 1 for mail.  mode 1 enables deletion of headings.
 */
 
-reader(fname, mode)
-char *fname;
-int mode;
+void reader(char *fname, int mode)
 {
-	int top, pos, ch, killcnt;
-	FILE *fp;
+    int top, pos, ch, killcnt;
+    FILE *fp;
 
-	fp = fopen(fname, "r");
+    fp = fopen(fname, "r");
 
-	if(fp == NULL) {
-		if(mode)
-			saystat("No Mail in your box.");
-		else
-			saystat("No News to Read.");
-		return;
-	}
+    if(fp == NULL) {
+        if(mode)
+            saystat("No Mail in your box.");
+        else
+            saystat("No News to Read.");
+        return;
+    }
 
-	readerscr(mode);
+    readerscr(mode);
 
-	indexer(fp);
+    indexer(fp);
 
-	top = pos = index_cnt - 1;
+    top = pos = index_cnt - 1;
 
-	show_screen(top, fp);
+    show_screen(top, fp);
 
-	do {
-		gmove(pos - top + 8, 1);
-		gputch('>');
+    do {
+        gmove(pos - top + 8, 1);
+        gputch('>');
 
-		ch = ggetch();
+        ch = ggetch();
 
-		gmove(pos - top + 8, 1);
-		gputch(' ');
+        gmove(pos - top + 8, 1);
+        gputch(' ');
 
-		switch(ch) {
+        switch(ch) {
 
-		case 'j' :
+        case 'j' :
         case GKEY_DOWN:
-			pos++;
-			break;
+            pos++;
+            break;
 
-		case 'k' :
+        case 'k' :
         case GKEY_UP:
-			pos--;
-			break;
+            pos--;
+            break;
 
-		case 'n' :
+        case 'n' :
         case GKEY_PAGEDOWN:
-			pos += 11;
-			break;
+            pos += 11;
+            break;
 
-		case 'p' :
+        case 'p' :
         case GKEY_PAGEUP:
-			pos -= 10;
-			break;
+            pos -= 10;
+            break;
 
-		case 'd' :
-			if(!mode)
-				break;
+        case 'd' :
+            if(!mode)
+                break;
 
-			killed[pos]++;
-			killed[pos] %= 2;
+            killed[pos]++;
+            killed[pos] %= 2;
 
-			show_screen(top, fp);
+            show_screen(top, fp);
 
-			break;
+            break;
 
-		case 'v' :
-			viewer(fp, pos, mode);
-			show_screen(top, fp);
-			break;
+        case 'v' :
+            viewer(fp, pos, mode);
+            show_screen(top, fp);
+            break;
 
         case ' ' :
         case 'q' :
             ch = '\033';
             break;
 
-		}
+        }
 
-		if(pos < 0)      pos = 0;
-		if(pos >= index_cnt) pos = index_cnt - 1;
+        if(pos < 0)      pos = 0;
+        if(pos >= index_cnt) pos = index_cnt - 1;
 
-		if(pos > top + 8 || pos < top - 7) {
-			top = pos;
-			show_screen(top, fp);
-		}
+        if(pos > top + 8 || pos < top - 7) {
+            top = pos;
+            show_screen(top, fp);
+        }
 
-	} while(ch != '\033');
+    } while(ch != '\033');
 
-	fclose(fp);
+    fclose(fp);
 
-	gerase(0);
-	mainscreen();
+    gerase(0);
+    mainscreen();
 
-	/* handle deletion. */
+    /* handle deletion. */
 
-	if(mode) {
-		for(killcnt = 0, pos = 0; pos < index_cnt; pos++)
-			killcnt += killed[pos];
+    if(mode) {
+        for(killcnt = 0, pos = 0; pos < index_cnt; pos++)
+            killcnt += killed[pos];
 
-		if(killcnt != 0) { /* deleted some... */
+        if(killcnt != 0) { /* deleted some... */
 
-			if(killcnt == index_cnt) /* deleted ALL */
-				unlink(fname);
-			else
-				delete_msgs(fname);
-		}
-	}
+            if(killcnt == index_cnt) /* deleted ALL */
+                unlink(fname);
+            else
+                delete_msgs(fname);
+        }
+    }
 }
 
 
 /*
-	viewer() displays text from the given file, from the given
-	index offset to the end of file or until a line beginning with
-	a HEADERMARK is encountered.
+    viewer() displays text from the given file, from the given
+    index offset to the end of file or until a line beginning with
+    a HEADERMARK is encountered.
 */
 
-viewer(fp, pos, mode)
-FILE *fp;
-int pos, mode;
+void viewer(FILE *fp, int pos, int mode)
 {
-	int ch, i, len, done, pg, opg;
-	char dummy[128];
+    int ch, i, len, done, pg, opg;
+    char dummy[128];
 
-	len = strlen(HEADERMARK);
+    len = strlen(HEADERMARK);
 
-	fseek(fp, r_index[pos], 0);
+    fseek(fp, r_index[pos], 0);
 
-	viewerscr(mode);
-	show_killed(pos);
+    viewerscr(mode);
+    show_killed(pos);
 
-	done = 0;
+    done = 0;
 
-	page_cnt = 0;
+    page_cnt = 0;
 
-	do {
-		pages[page_cnt++] = ftell(fp);
+    do {
+        pages[page_cnt++] = ftell(fp);
 
-		for(i = 0; i < 15; i++) {
-			if(!rgetline(dummy, fp)) {
-				done = 1;
-				break;
-			}
-			if(strncmp(dummy, HEADERMARK, len) == 0) {
-				done = 1;
-				break;
-			}
-		}
+        for(i = 0; i < 15; i++) {
+            if(!rgetline(dummy, fp)) {
+                done = 1;
+                break;
+            }
+            if(strncmp(dummy, HEADERMARK, len) == 0) {
+                done = 1;
+                break;
+            }
+        }
 
-	} while(!done);
+    } while(!done);
 
-	pg = 0;
+    pg = 0;
 
-	showpage(fp, pg);
+    showpage(fp, pg);
 
-	do {
-		gmove(21, 71);
-		ch = ggetch();
+    do {
+        gmove(21, 71);
+        ch = ggetch();
 
-		opg = pg;
+        opg = pg;
 
-		switch(ch) {
+        switch(ch) {
 
-		case 'j' :
-		case 'n' :
+        case 'j' :
+        case 'n' :
         case GKEY_DOWN:
-			pg++;
-			break;
+            pg++;
+            break;
 
-		case 'k' :
-		case 'p' :
+        case 'k' :
+        case 'p' :
         case GKEY_UP:
-			pg--;
-			break;
+            pg--;
+            break;
 
-		case 'd' :
-			killed[pos] = killed[pos] ? 0 : 1;
-			show_killed(pos);
-			break;
+        case 'd' :
+            killed[pos] = killed[pos] ? 0 : 1;
+            show_killed(pos);
+            break;
 
         case ' ' :
         case 'q' :
             ch = '\033';
             break;
 
-		}
+        }
 
-		if(pg < 0)         pg = 0;
-		if(pg >= page_cnt) pg = page_cnt - 1;
+        if(pg < 0)         pg = 0;
+        if(pg >= page_cnt) pg = page_cnt - 1;
 
-		if(pg != opg)
-			showpage(fp, pg);
+        if(pg != opg)
+            showpage(fp, pg);
 
-	} while(ch != '\033');
+    } while(ch != '\033');
 
-	readerscr(mode);
+    readerscr(mode);
 }
 
 
-show_killed(pos)
-int pos;
+void show_killed(int pos)
 {
-	gmove(21, 40);
+    gmove(21, 40);
 
-	if(killed[pos])
-		gputs("[Deleted]");
-	else
-		gputs("         ");
+    if(killed[pos])
+        gputs("[Deleted]");
+    else
+        gputs("         ");
 }
 
 
 /*
-	indexer() reads the given file, scanning for headings.  headings
-	are flagged with a space-backspace combination (" \b") which is
-	not shown on most printouts but is easily recognized.
+    indexer() reads the given file, scanning for headings.  headings
+    are flagged with a space-backspace combination (" \b") which is
+    not shown on most printouts but is easily recognized.
 
-	the array r_index[] contains the seek positions of each heading.
-	it is limited by index_cnt.
+    the array r_index[] contains the seek positions of each heading.
+    it is limited by index_cnt.
 */
 
-indexer(fp)
-FILE *fp;
+void indexer(FILE *fp)
 {
-	char inbuf[80], len;
-	long pos;
+    char inbuf[80], len;
+    long pos;
 
-	index_cnt = 0;
+    index_cnt = 0;
 
-	len = strlen(HEADERMARK);
+    len = strlen(HEADERMARK);
 
-	rewind(fp);
+    rewind(fp);
 
-	for(pos = ftell(fp); rgetline(inbuf, fp); pos = ftell(fp))
-		if(strncmp(inbuf, HEADERMARK, len) == 0) {
-			killed[index_cnt] = 0;
-			r_index[index_cnt++] = pos + len;
-		}
+    for(pos = ftell(fp); rgetline(inbuf, fp); pos = ftell(fp))
+        if(strncmp(inbuf, HEADERMARK, len) == 0) {
+            killed[index_cnt] = 0;
+            r_index[index_cnt++] = pos + len;
+        }
 }
 
 
 /*
-	rgetline() reads in a maximum of 77 characters, but always reads to
-	end-of-line.  '\r' and '\n' characters are not included in the
-	string read.
+    rgetline() reads in a maximum of 77 characters, but always reads to
+    end-of-line.  '\r' and '\n' characters are not included in the
+    string read.
 
-	returns 1 if a line was read, or 0 if at EOF.
+    returns 1 if a line was read, or 0 if at EOF.
 */
 
 int rgetline(char *s, FILE *fp)
 {
-	int ch, i;
+    int ch, i;
 
-	i = 0;
+    i = 0;
 
-	while(i < 77 && (ch = getc(fp)) != EOF && ch != '\n')
-		if(ch != '\r')
-			s[i++] = ch;
+    while(i < 77 && (ch = getc(fp)) != EOF && ch != '\n')
+        if(ch != '\r')
+            s[i++] = ch;
 
-	s[i] = '\0';
+    s[i] = '\0';
 
-	if(feof(fp) && i == 0)
-		return 0;
+    if(feof(fp) && i == 0)
+        return 0;
 
-	while(!feof(fp) && ch != '\n')
-		ch = getc(fp);
+    while(!feof(fp) && ch != '\n')
+        ch = getc(fp);
 
-	return 1;
+    return 1;
 }
 
 
 /*
-	show_screen() shows headers from the given file, centering at the
-	header number given.
+    show_screen() shows headers from the given file, centering at the
+    header number given.
 */
 
-show_screen(pos, fp)
-int pos;
-FILE *fp;
+void show_screen(int pos, FILE *fp)
 {
-	int i;
-	char inbuf[80];
+    int i;
+    char inbuf[80];
 
-	pos -= 8;
+    pos -= 8;
 
-	for(i = 0; i < 18; i++) {
-		gmove(i, 2);
+    for(i = 0; i < 18; i++) {
+        gmove(i, 2);
 
-		if(pos + i < index_cnt && pos + i >= 0) {
-			if(killed[pos+i])
-				gputch('*');
-			else
-				gputch(' ');
-			fseek(fp, r_index[pos+i], 0);
-			rgetline(inbuf, fp);
-			gputs(inbuf);
-		} else if(pos + i == -1)
-			gputs("*** Top of List ***");
-		else if(pos + i == index_cnt)
-			gputs("*** End of List ***");
+        if(pos + i < index_cnt && pos + i >= 0) {
+            if(killed[pos+i])
+                gputch('*');
+            else
+                gputch(' ');
+            fseek(fp, r_index[pos+i], 0);
+            rgetline(inbuf, fp);
+            gputs(inbuf);
+        } else if(pos + i == -1)
+            gputs("*** Top of List ***");
+        else if(pos + i == index_cnt)
+            gputs("*** End of List ***");
 
-		gclrline();
-	}
+        gclrline();
+    }
 }
 
 
 /*
-	showpage() shows a page of text from the current file, starting at
-	the file position in pages[pg], for 19 lines.
+    showpage() shows a page of text from the current file, starting at
+    the file position in pages[pg], for 19 lines.
 */
 
-showpage(fp, pg)
-FILE *fp;
-int pg;
+void showpage(FILE *fp, int pg)
 {
-	int i, len;
-	char inbuf[128];
+    int i, len;
+    char inbuf[128];
 
-	fseek(fp, pages[pg], 0);
+    fseek(fp, pages[pg], 0);
 
-	len = strlen(HEADERMARK);
+    len = strlen(HEADERMARK);
 
-	for(i = 0; i < 19; i++) {
-		if(!rgetline(inbuf, fp))
-			break;
+    for(i = 0; i < 19; i++) {
+        if(!rgetline(inbuf, fp))
+            break;
 
-		if(strncmp(inbuf, HEADERMARK, len) == 0)
-			break;
+        if(strncmp(inbuf, HEADERMARK, len) == 0)
+            break;
 
-		gmove(i, 2);
-		gputs(inbuf);
-		gclrline();
-	}
+        gmove(i, 2);
+        gputs(inbuf);
+        gclrline();
+    }
 
-	for(; i < 19; i++) {
-		gmove(i, 2);
-		gclrline();
-	}
+    for(; i < 19; i++) {
+        gmove(i, 2);
+        gclrline();
+    }
 
-	gmove(21, 55);
-	gprintf("Page %d of %d", pg + 1, page_cnt);
-	gclrline();
+    gmove(21, 55);
+    gprintf("Page %d of %d", pg + 1, page_cnt);
+    gclrline();
 
-	gmove(21, 70);
-	gputs("< >");
+    gmove(21, 70);
+    gputs("< >");
 }
 
 
 /*
-	delete_msgs() deletes messages from the named file, using the
-	information in the r_index[] and killed[] arrays.
+    delete_msgs() deletes messages from the named file, using the
+    information in the r_index[] and killed[] arrays.
 */
 
-delete_msgs(fn)
-char *fn;
+void delete_msgs(char *fn)
 {
-	int i, done, len;
-	char tmp[16], inbuf[128];
-	FILE *in, *out;
+    int i, done, len;
+    char tmp[16], inbuf[128];
+    FILE *in, *out;
 
-	len = strlen(HEADERMARK);
+    len = strlen(HEADERMARK);
 
-	strcpy(tmp, "tmp");
-	strcat(tmp, fn);
+    strcpy(tmp, "tmp");
+    strcat(tmp, fn);
 
-	in = fopen(fn, "r");
-	out = fopen(tmp, "w");
+    in = fopen(fn, "r");
+    out = fopen(tmp, "w");
 
-	if(in == NULL || out == NULL) {
-		if(in != NULL)  fclose(in);
-		if(out != NULL) fclose(out);
-		saystat("Message Deletion Failed (System Error)");
-		return;
-	}
+    if(in == NULL || out == NULL) {
+        if(in != NULL)  fclose(in);
+        if(out != NULL) fclose(out);
+        saystat("Message Deletion Failed (System Error)");
+        return;
+    }
 
-	for(i = 0; i < index_cnt; i++)
-		if(!killed[i]) {
-			fputs(HEADERMARK, out);
+    for(i = 0; i < index_cnt; i++)
+        if(!killed[i]) {
+            fputs(HEADERMARK, out);
 
-			fseek(in, r_index[i], 0);
+            fseek(in, r_index[i], 0);
 
-			done = 0;
+            done = 0;
 
-			while(rgetline(inbuf, in) && !done)
-				if(strncmp(inbuf, HEADERMARK, len) == 0)
-					done = 1;
-				else {
-					fputs(inbuf, out);
-					putc('\n', out);
-				}
-		}
+            while(rgetline(inbuf, in) && !done)
+                if(strncmp(inbuf, HEADERMARK, len) == 0)
+                    done = 1;
+                else {
+                    fputs(inbuf, out);
+                    putc('\n', out);
+                }
+        }
 
-	fclose(in);
-	fclose(out);
+    fclose(in);
+    fclose(out);
 
-	unlink(fn);
-	rename(tmp, fn);
+    unlink(fn);
+    rename(tmp, fn);
 }
 
 
-readerscr(mode)
-int mode;
+void readerscr(int mode)
 {
-	gerase(0);
+    gerase(0);
 
-	gmove(20, 2);
+    gmove(20, 2);
 
-	if(mode)
-		gputs("Mail:  (v)iew current  (d)elete  ");
-	else
-		gputs("News:  (v)iew current  ");
+    if(mode)
+        gputs("Mail:  (v)iew current  (d)elete  ");
+    else
+        gputs("News:  (v)iew current  ");
 
-	gputs("(j)down  (k)up  (n)ext  (p)revious");
+    gputs("(j)down  (k)up  (n)ext  (p)revious");
 
-	gmove(21, 2);
-	gputs("Press SPACE to Exit.");
+    gmove(21, 2);
+    gputs("Press SPACE to Exit.");
 }
 
 
-viewerscr(mode)
-int mode;
+void viewerscr(int mode)
 {
-	gerase(0);
+    gerase(0);
 
-	gmove(20, 2);
+    gmove(20, 2);
 
-	if(mode)
-		gputs("Mail:  (d)elete  ");
-	else
-		gputs("News:  ");
+    if(mode)
+        gputs("Mail:  (d)elete  ");
+    else
+        gputs("News:  ");
 
-	gputs("(j)down  (k)up");
+    gputs("(j)down  (k)up");
 
-	gmove(21, 2);
-	gputs("Press SPACE to Exit.");
+    gmove(21, 2);
+    gputs("Press SPACE to Exit.");
 
-	gmove(21, 70);
-	gputs("< >");
+    gmove(21, 70);
+    gputs("< >");
 }
 
 
 /* end of file. */
-

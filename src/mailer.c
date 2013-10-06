@@ -58,8 +58,7 @@
 	then sends it to the specified nations' mailbox.
 */
 
-mailer(from, to)
-int from, to;
+void mailer(int from, int to)
 {
 	char message[17][80], heading[80], fname[16];
 	int i, j, l, c, ch, save, menu, last;

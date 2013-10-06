@@ -40,5 +40,16 @@
 #define MAXINDEX	256
 #define HEADERMARK	" \b"
 
+void reader(char *fname, int mode);
+void viewer(FILE *fp, int pos, int mode);
+void show_killed(int pos);
+void indexer(FILE *fp);
+int rgetline(char *s, FILE *fp);
+void show_screen(int pos, FILE *fp);
+void showpage(FILE *fp, int pg);
+void delete_msgs(char *fn);
+void readerscr(int mode);
+void viewerscr(int mode);
+
 
 /* end of file. */
