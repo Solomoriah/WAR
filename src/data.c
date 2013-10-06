@@ -143,11 +143,11 @@ int loadmap()
     fp = fopen(MAPFILE, "r");
 
     if(fp == NULL)
-        return WAR_OPENERR;
+        return WAR_OPENERROR;
 
     if(fgets(inbuf, 128, fp) == NULL) {
         fclose(fp);
-        return WAR_READERR;
+        return WAR_READERROR;
     }
 
     if(inbuf[0] != 'M' || inbuf[1] != ' ') {
@@ -213,11 +213,11 @@ int loadsave()
     fp = fopen(GAMESAVE, "r");
 
     if(fp == NULL)
-        return WAR_OPENERR;
+        return WAR_OPENERROR;
 
     if(fgets(inbuf, 128, fp) == NULL) {
         fclose(fp);
-        return WAR_READERR;
+        return WAR_READERROR;
     }
 
     if(inbuf[0] != 'G' || inbuf[1] != ' ') {

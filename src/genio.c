@@ -148,8 +148,7 @@ int gend()
 }
 
 
-int gmove(r, c)
-int r, c;
+int gmove(int r, int c)
 {
     if(!initialized)
         return -1;
@@ -176,8 +175,7 @@ int gclrline()
 }
 
 
-int gputs(s)
-char *s;
+int gputs(char *s)
 {
     int cnt;
 

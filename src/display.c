@@ -50,6 +50,9 @@
 
 extern FILE *pfile;
 
+int maxtrans = 3;
+int trans = 0;
+
 int gran = 2;
 
 char *terminate = "\033q ";
@@ -96,10 +99,7 @@ char *theeye[] = {
 
 char *instance();
 
-extern int maxtrans;
-extern int trans;
-
-extern char war_title[];
+char war_title[129] = "";
 
 
 /* nation id must be located/created at a higher level. */
@@ -345,7 +345,7 @@ void mainloop(int ntn)
             mailer(ntn, n);
 
             force = 1;
-            clearstat();
+            clearstat(-1);
             break;
 
        case 's' : /* status */
