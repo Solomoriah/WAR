@@ -53,9 +53,7 @@ extern char *errors[];
 FILE *mfile = NULL;
 
 
-main(argc, argv)
-int argc;
-char **argv;
+int main(int argc, char *argv[])
 {
 	int rc, i, j, n, u;
 	FILE *fp;

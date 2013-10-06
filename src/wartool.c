@@ -47,6 +47,7 @@
 #include "war.h"
 #include "warext.h"
 #include "display.h"
+#include "dispsupp.h"
 
 extern char *errors[];
 
@@ -61,9 +62,7 @@ extern struct aview armyview[12];
 extern char *marks[];
 
 
-main(argc, argv)
-int argc;
-char **argv;
+int main(int argc, char *argv[])
 {
 	int rc, i, uid, n, c, ch, t, mtbl, line, offset;
 	FILE *fp;

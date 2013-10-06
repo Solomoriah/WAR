@@ -1,7 +1,7 @@
 /*
 	Solomoriah's WAR!
 
-	data.h -- data manager module includes
+    dispsupp.h -- support functions for display handlers
 
     Copyright 1993, 1994, 2001, 2013 Chris Gonnerman
     All rights reserved.
@@ -37,22 +37,22 @@
 */
 
 
-char *armyname(int a);
-void rmnl(char *s);
-int roll(int max);
-int isgreater(int a1, int a2);
+int fixrow(int r);
+int fixcol(int c);
+int groupcmp(int r1, int c1, int r2, int c2);
+int nextarmy(int ntn, int *rp, int *cp);
+int nextgroup(int ntn, int *rp, int *cp);
+int prevarmy(int ntn, int *rp, int *cp);
+int prevgroup(int ntn, int *rp, int *cp);
+int movecost(int a, int r, int c);
+int getstring(char *s);
+int getpass(char *s);
 
-#define WAR_NOERROR     0
-#define WAR_OPENERROR   1
-#define WAR_READERROR   2
-#define WAR_INVHEADER   3
-#define WAR_EOFERROR    4
-#define WAR_NOTEXTERR   5
-#define WAR_NOSUCHCMD   6
-#define WAR_MALLOCERR   7
-#define WAR_INVARGS     8
-#define WAR_DIRACCERR   9
-#define WAR_CFEXECFAIL 10
+void saystat(char *msg);
+void clearstat(int mode);
+void status();
+void help();
+void show_info(int r, int c);
 
 
 /* end of file. */

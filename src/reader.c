@@ -42,6 +42,7 @@
 
 #include "genio.h"
 #include "reader.h"
+#include "dispsupp.h"
 
 static long r_index[MAXINDEX];
 static char killed[MAXINDEX];

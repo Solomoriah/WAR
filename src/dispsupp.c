@@ -44,10 +44,10 @@
 #include "warext.h"
 #include "genio.h"
 #include "function.h"
+#include "dispsupp.h"
 
 
-int fixrow(r)
-int r;
+int fixrow(int r)
 {
     r += map_height;
     r %= map_height;
@@ -56,8 +56,7 @@ int r;
 }
 
 
-int fixcol(c)
-int c;
+int fixcol(int c)
 {
     c += map_width;
     c %= map_width;
@@ -66,8 +65,7 @@ int c;
 }
 
 
-saystat(msg)
-char *msg;
+void saystat(char *msg)
 {
     gmove(20, 1);
     gputs(msg);
@@ -75,8 +73,7 @@ char *msg;
 }
 
 
-clearstat(mode)
-int mode;
+void clearstat(int mode)
 {
     if(mode == -1) {
         gmove(20, 1); gclrline();
@@ -95,8 +92,7 @@ int mode;
                 otherwise returns 0
 */
 
-int groupcmp(r1, c1, r2, c2)
-int r1, c1, r2, c2;
+int groupcmp(int r1, int c1, int r2, int c2)
 {
     /* quadrant check */
 
@@ -206,8 +202,7 @@ int prevarmy(int ntn, int *rp, int *cp)
 }
 
 
-int prevgroup(ntn, rp, cp)
-int ntn, *rp, *cp;
+int prevgroup(int ntn, int *rp, int *cp)
 {
     int i, t_r, t_c;
 
@@ -299,7 +294,7 @@ int movecost(int a, int r, int c)
 }
 
 
-status()
+void status()
 {
     int ch, pos, i, j, hc, ac, cc;
 
@@ -399,7 +394,7 @@ status()
 }
 
 
-help()
+void help()
 {
     static mode = 0;
 
@@ -499,8 +494,7 @@ int getpass(char *s)
 }
 
 
-show_info(r, c)
-int r, c;
+void show_info(int r, int c)
 {
     char buff[80], buf2[64];
     int i, ch, city, ntn, ac, hc;

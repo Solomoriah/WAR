@@ -46,6 +46,7 @@
 #include "function.h"
 #include "data.h"
 #include "display.h"
+#include "dispsupp.h"
 
 extern FILE *pfile;
 

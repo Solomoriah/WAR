@@ -44,6 +44,7 @@
 #include "genio.h"
 #include "function.h"
 #include "reader.h"
+#include "dispsupp.h"
 
 
 #define MAILTTL "Mail Editor:  "

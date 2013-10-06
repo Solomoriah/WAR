@@ -44,9 +44,7 @@
 #include "war.h"
 
 
-main(argc, argv)
-int argc;
-char **argv;
+int main(int argc, char *argv[])
 {
 	struct stat st_buf;
 
@@ -71,7 +69,7 @@ char **argv;
 }
 
 
-mainscreen()
+void mainscreen()
 {
 }
 

@@ -59,9 +59,7 @@ FILE *pfile = NULL;
 
 
 
-main(argc, argv)
-int argc;
-char **argv;
+int main(int argc, char *argv[])
 {
     int rc, i, uid, n, c, ch, t, trys, mtbl, line, offset, confirmed;
     FILE *fp, *pp;
