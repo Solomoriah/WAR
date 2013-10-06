@@ -42,6 +42,7 @@
 
 #include "war.h"
 #include "function.h"
+#include "data.h"
 
 
 char *errors[] = {
@@ -472,8 +473,7 @@ int loadsave()
 }
 
 
-rmnl(s)
-char *s;
+void rmnl(char *s)
 {
 	for(; *s; s++)
 		if(*s == '\n')
@@ -481,8 +481,7 @@ char *s;
 }
 
 
-int roll(max)
-int max;
+int roll(int max)
 {
 	long lrand48();
 
@@ -524,8 +523,7 @@ int city_at(int r, int c)
 }
 
 
-char *instance(n)
-int n;
+char *instance(int n)
 {
 	static char buff[10];
 
@@ -556,8 +554,7 @@ int n;
 }
 
 
-char *cityowner(c)
-int c;
+char *cityowner(int c)
 {
 	int n;
 
@@ -576,15 +573,13 @@ int turn()
 }
 
 
-char *nationname(n)
-int n;
+char *nationname(int n)
 {
 	return nations[n].name;
 }
 
 
-char *nationcity(n)
-int n;
+char *nationcity(int n)
 {
 	if(n == 0)  return "Militia";
 	if(n == 27) return "Rogue";
@@ -593,8 +588,7 @@ int n;
 }
 
 
-char *armyname(a)
-int a;
+char *armyname(int a)
 {
 	int c, t, i;
 	static char buff[ARMYNAMLEN+CTYNAMLEN+6];
@@ -623,9 +617,9 @@ int a;
 
 
 /*
-    note:  mode parameter is now invalid (02/05/2002)
+    used for sorting armies
 */
-int isgreater(int a1, int a2, int mode)
+int isgreater(int a1, int a2)
 {
 	int c1, c2, t1, t2, i1, i2;
 	char buf1[ARMYNAMLEN], buf2[ARMYNAMLEN];

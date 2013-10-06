@@ -41,7 +41,7 @@ struct genio_driver {
 	int (*init)(),   (*end)(),     (*move)(),   
         (*erase)(),  (*clrline)(), (*addch)(), 
         (*hilite)(), (*refresh)(), (*getch)(),
-        (*puts)(),   (*mapspot)();
+        (*puts)(),   (*mapspot)(int r, int c, char terr, char mark, int focus);
 };
 
 int ginit(void);

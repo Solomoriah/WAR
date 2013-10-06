@@ -43,9 +43,9 @@
 #include "warext.h"
 #include "function.h"
 #include "reader.h"
+#include "data.h"
+#include "combat.h"
 
-
-char *armyname();
 
 extern FILE *mfile, *news;
 
@@ -58,8 +58,7 @@ struct armystack {
 };
 
 
-combat(n)
-int n;
+void combat(int n)
 {
 	int i, j, c;
 
@@ -102,9 +101,7 @@ int n;
 	make_stack forms the stack of armies which includes army a.
 */
 
-make_stack(stack, a)
-struct armystack *stack;
-int a;
+void make_stack(struct armystack *stack, int a)
 {
 	int i, n, r, c, h;
 
@@ -142,9 +139,7 @@ int a;
 }
 
 
-stack_remove(stack, idx)
-struct armystack *stack;
-int idx;
+void stack_remove(struct armystack *stack, int idx)
 {
 	int i, h;
 
@@ -175,7 +170,7 @@ int idx;
 }
 
 
-advance(int hero)
+void advance(int hero)
 {
     int res;
 	char buff[128];
@@ -208,7 +203,7 @@ advance(int hero)
 }
 
 
-battle(a, b)
+void battle(int a, int b)
 {
 	struct armystack stacks[2];
 	int ntns[2], r, c, city, hi, total, rlose, rwin, l, i, d, dn;
@@ -357,8 +352,7 @@ battle(a, b)
 }
 
 
-capture(n, c)
-int n, c;
+void capture(int n, int c)
 {
 	char buff[128];
 	int n2;
@@ -381,15 +375,14 @@ int n, c;
 }
 
 
-int least(stack)
-struct armystack *stack;
+int least(struct armystack *stack)
 {
 	int i, n;
 
 	n = 0;
 
 	for(i = 0; i < stack->count; i++)
-		if(isgreater(stack->index[n], stack->index[i], GT_COMBAT))
+		if(isgreater(stack->index[n], stack->index[i]))
 			n = i;
 
 	return n;

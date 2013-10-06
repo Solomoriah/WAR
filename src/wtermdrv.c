@@ -132,7 +132,7 @@ int warterm_puts(char *s)
 
 int warterm_hilite(int mode)
 {
-    printf("H\01%d\01\n");
+    printf("H\01%d\01\n", mode);
 
     return mode;
 }

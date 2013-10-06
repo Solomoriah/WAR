@@ -103,7 +103,7 @@ struct node *make_node()
 }
 
 
-addkey(char *match, int result)
+void addkey(char *match, int result)
 {
 	int i, len;
 	struct node *k, *pk;
@@ -172,8 +172,7 @@ int ansi_endwin()
 }
 
 
-int ansi_move(r, c)
-int r, c;
+int ansi_move(int r, int c)
 {
 	cur_y = r;
 	cur_x = c;
@@ -354,7 +353,6 @@ static int get_key()
 			k = k->match;
 	}
 }
-
 
 
 int ansi_getch()

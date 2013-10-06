@@ -58,8 +58,7 @@ extern FILE *mfile;
     odds are 10 times normal.  Maximum odds are 90% in either case.
 */
 
-creator(n)
-int n;
+void creator(int n)
 {
 	int nheros, ncities, odds, counter, i, c, r, t, mtbl;
 	char buff[128];

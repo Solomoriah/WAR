@@ -47,6 +47,11 @@
 #include "war.h"
 #include "warext.h"
 #include "function.h"
+#include "combat.h"
+
+
+void creator(int n);
+
 
 extern char *errors[];
 

@@ -42,11 +42,10 @@
 #include "war.h"
 #include "warext.h"
 #include "function.h"
+#include "data.h"
 
 
 extern FILE *mfile;
-
-char *armyname();
 
 
 /*

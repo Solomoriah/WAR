@@ -44,12 +44,11 @@
 #include "warext.h"
 #include "genio.h"
 #include "function.h"
+#include "data.h"
 
 extern FILE *pfile;
 
 int gran = 2;
-
-char *armyname();
 
 char *terminate = "\033q ";
 
@@ -575,9 +574,7 @@ sortview()
 
     for(gap = avcnt / 2; gap > 0; gap /= 2)
         for(i = gap; i < avcnt; i++)
-            for(j = i - gap;
-            j >= 0 && isgreater(armyview[j+gap].id, armyview[j].id, GT_DISPLAY);
-            j -= gap) {
+            for(j = i - gap; j >= 0 && isgreater(armyview[j+gap].id, armyview[j].id); j -= gap) {
                 temp = armyview[j].id;
                 armyview[j].id = armyview[j+gap].id;
                 armyview[j+gap].id = temp;
