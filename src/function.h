@@ -54,5 +54,8 @@ void showmap();
 
 int writemap(FILE *fp, int ntn);
 
+int execpriv(char *line);
+int execuser(char *line);
+
 
 /* end of file. */

@@ -42,12 +42,11 @@
 #include "war.h"
 #include "warext.h"
 #include "function.h"
+#include "execsupp.h"
 
 
 #pragma argsused
-static int update(argc, argv)
-int argc;
-char *argv[];
+static int update(int argc, char *argv[])
 {
     int i, k, n, t, cnt, xch, max;
 
@@ -163,9 +162,7 @@ char *argv[];
     new-nation 'ruler' uid city mark
 */
 #pragma argsused
-static int newnation(argc, argv)
-int argc;
-char *argv[];
+static int newnation(int argc, char *argv[])
 {
     int i, r, c;
 
@@ -203,9 +200,7 @@ char *argv[];
     control-city nation city max-time
 */
 #pragma argsused
-static int contcity(argc, argv)
-int argc;
-char *argv[];
+static int contcity(int argc, char *argv[])
 {
     int c;
 
@@ -223,9 +218,7 @@ char *argv[];
             combat hero move_rate move_tbl special_mv eparm1
 */
 #pragma argsused
-static int makearmy(argc, argv)
-int argc;
-char *argv[];
+static int makearmy(int argc, char *argv[])
 {
     /* no error, just don't do it. */
 
@@ -260,9 +253,7 @@ char *argv[];
     kill-army -2 army nation    (army deserts to nation)
 */
 #pragma argsused
-static int killarmy(argc, argv)
-int argc;
-char *argv[];
+static int killarmy(int argc, char *argv[])
 {
     int a, i, n;
 
@@ -305,9 +296,7 @@ char *argv[];
     move-army army cost row column
 */
 #pragma argsused
-static int movearmy(argc, argv)
-int argc;
-char *argv[];
+static int movearmy(int argc, char *argv[])
 {
     int a, b;
 
@@ -332,9 +321,7 @@ char *argv[];
     name-army army 'name'
 */
 #pragma argsused
-static int namearmy(argc, argv)
-int argc;
-char *argv[];
+static int namearmy(int argc, char *argv[])
 {
     int a;
 
@@ -354,9 +341,7 @@ char *argv[];
     change-army army combat hero
 */
 #pragma argsused
-static int changearmy(argc, argv)
-int argc;
-char *argv[];
+static int changearmy(int argc, char *argv[])
 {
     int a, c, h;
 
@@ -378,9 +363,7 @@ char *argv[];
     set-eparm army eparm
 */
 #pragma argsused
-static int seteparm(argc, argv)
-int argc;
-char *argv[];
+static int seteparm(int argc, char *argv[])
 {
     int a;
 
@@ -399,9 +382,7 @@ char *argv[];
     set-produce city type
 */
 #pragma argsused
-static int setprod(argc, argv)
-int argc;
-char *argv[];
+static int setprod(int argc, char *argv[])
 {
     int c;
 
@@ -433,8 +414,7 @@ static struct parse_tbl table[] = {
 };
 
 
-int execpriv(line)
-char *line;
+int execpriv(char *line)
 {
     char **args;
     int n;
