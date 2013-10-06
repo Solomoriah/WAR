@@ -1,7 +1,7 @@
 /*
 	Solomoriah's WAR!
 
-	function.h -- function definitions
+	display.h -- data manager module includes
 
     Copyright 1993, 1994, 2001, 2013 Chris Gonnerman
     All rights reserved.
@@ -37,22 +37,25 @@
 */
 
 
-char *armyname();
-char *cityowner();
-char *nationname();
-char *nationcity();
-char *instance();
+struct mv_stack {
+    int id;
+    int moved;
+    int dep;
+};
 
-int turn();
-
-char **parseline();
-int countargs();
-
-int loadmap();
-int loadsave();
-void showmap();
-
-int writemap(FILE *fp, int ntn);
+void mainloop(int ntn);
+void setfocus(int ntn, int r, int c);
+void showmap(int r, int c, int force);
+void showfocus(int r, int c, int mode);
+void showcity(int r, int c);
+void showarmies();
+void sortview();
+void analyze_stack(struct mv_stack *ms, int mc);
+void move_mode(int ntn, int *rp, int *cp);
+void mainscreen();
+void titlescreen();
+void produce(int city);
+void info_mode(int *rp, int *cp, int n, int ch);
 
 
 /* end of file. */

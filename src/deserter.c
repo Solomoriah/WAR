@@ -53,8 +53,7 @@ extern FILE *mfile;
 	given nation.
 */
 
-deserter(n)
-int n;
+void deserter(int n)
 {
 	int narmies, i, die;
 	char buff[128];

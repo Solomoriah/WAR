@@ -1,7 +1,7 @@
 /*
 	Solomoriah's WAR!
 
-	function.h -- function definitions
+	data.h -- data manager module includes
 
     Copyright 1993, 1994, 2001, 2013 Chris Gonnerman
     All rights reserved.
@@ -37,22 +37,10 @@
 */
 
 
-char *armyname();
-char *cityowner();
-char *nationname();
-char *nationcity();
-char *instance();
-
-int turn();
-
-char **parseline();
-int countargs();
-
-int loadmap();
-int loadsave();
-void showmap();
-
-int writemap(FILE *fp, int ntn);
+char *armyname(int a);
+void rmnl(char *s);
+int roll(int max);
+int isgreater(int a1, int a2);
 
 
 /* end of file. */

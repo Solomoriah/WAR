@@ -50,6 +50,7 @@
 #include "combat.h"
 
 
+void deserter(int n);
 void creator(int n);
 
 

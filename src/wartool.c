@@ -46,6 +46,7 @@
 
 #include "war.h"
 #include "warext.h"
+#include "display.h"
 
 extern char *errors[];
 

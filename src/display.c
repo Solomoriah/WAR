@@ -45,6 +45,7 @@
 #include "genio.h"
 #include "function.h"
 #include "data.h"
+#include "display.h"
 
 extern FILE *pfile;
 
@@ -61,11 +62,7 @@ int ngroups = 0;
 struct aview armyview[12];
 int avcnt = 0, avpnt = 0;
 
-struct mv_stack {
-    int id;
-    int moved;
-    int dep;
-} movestack[10];
+struct mv_stack movestack[10];
 int mvcnt = 0;
 
 struct {
@@ -86,6 +83,16 @@ char *title[] = {
     NULL
 };
 
+char *theeye[] = {
+    "          +@@@@@@@'           ",
+    "        #@@@@@@@+@@@#         ",
+    "       @@@@@@@@@   ,@@@:+,    ",
+    "     `@@@,@@@@@;    `@'       ",
+    "    @@@@; :@@@+   ;.          ",
+    "     @@@@                     ",
+    "       ;@@`                   ",
+};
+
 char *instance();
 
 extern int maxtrans;
@@ -96,8 +103,7 @@ extern char war_title[];
 
 /* nation id must be located/created at a higher level. */
 
-mainloop(ntn)
-int ntn;
+void mainloop(int ntn)
 {
     int ch, r, c, i, n, city, army, force;
     char inbuf[16], buff[128];
@@ -366,8 +372,7 @@ int ntn;
 }
 
 
-setfocus(ntn, r, c)
-int ntn, r, c;
+void setfocus(int ntn, int r, int c)
 {
     int i, j, e;
 
@@ -437,8 +442,7 @@ int ntn, r, c;
 }
 
 
-int mapspot(r, c)
-int r, c;
+int mapspot(int r, int c)
 {
     if(mapovl[r][c] != ' ')
         return mapovl[r][c];
@@ -447,8 +451,7 @@ int r, c;
 }
 
 
-showmap(r, c, force)
-int r, c, force;
+void showmap(int r, int c, int force)
 {
     int ul_r, ul_c, f_r, f_c;
     int i, j, zr, zc;
@@ -483,8 +486,7 @@ int r, c, force;
 }
 
 
-showfocus(r, c, mode)
-int r, c, mode;
+void showfocus(int r, int c, int mode)
 {
     int f_r, f_c, rem;
 
@@ -497,8 +499,7 @@ int r, c, mode;
 }
 
 
-showcity(r, c)
-int r, c;
+void showcity(int r, int c)
 {
     int i;
     char buff[64];
@@ -518,7 +519,7 @@ int r, c;
 }
 
 
-showarmies()
+void showarmies()
 {
     int i, a;
     char buff[64];
@@ -566,7 +567,7 @@ showarmies()
 }
 
 
-sortview()
+void sortview()
 {
     int gap, i, j, temp;
 
@@ -578,15 +579,14 @@ sortview()
                 temp = armyview[j].id;
                 armyview[j].id = armyview[j+gap].id;
                 armyview[j+gap].id = temp;
-
                 temp = armyview[j].mark;
                 armyview[j].mark = armyview[j+gap].mark;
-             armyview[j+gap].mark = temp;
+                armyview[j+gap].mark = temp;
             }
 }
 
 
-analyze_stack(struct mv_stack *ms, int mc)
+void analyze_stack(struct mv_stack *ms, int mc)
 {
     int i, j, a, b, mmode;
 
@@ -675,8 +675,7 @@ analyze_stack(struct mv_stack *ms, int mc)
 }
 
 
-move_mode(ntn, rp, cp)
-int ntn, *rp, *cp;
+void move_mode(int ntn, int *rp, int *cp)
 {
     int i, j, mv, ch, city, army, t_r, t_c, a, b, ok, cnt, max, flag;
     int ac, hc, mvc[TRANS_ALL+1], mmode;
@@ -955,8 +954,7 @@ int ntn, *rp, *cp;
 }
 
 
-int mark_of(a)
-int a;
+int mark_of(int a)
 {
     int i;
 
@@ -971,7 +969,7 @@ int a;
 }
 
 
-mainscreen()
+void mainscreen()
 {
     int i;
 
@@ -1005,7 +1003,7 @@ mainscreen()
 }
 
 
-titlescreen()
+void titlescreen()
 {
     int i;
 
@@ -1028,8 +1026,7 @@ titlescreen()
 }
 
 
-produce(city)
-int city;
+void produce(int city)
 {
     int i, t, ch, ofs;
     char buff[80], okstring[6];
@@ -1071,8 +1068,7 @@ int city;
 }
 
 
-info_mode(rp, cp, n, ch)
-int *rp, *cp, n, ch;
+void info_mode(int *rp, int *cp, int n, int ch)
 {
     int done, r, c, ul_r, ul_c, f_r, f_c, t_r, t_c;
     int city, army, i, flag;

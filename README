@@ -17,3 +17,81 @@ scripts to assist with Linux BBS support.
 Though this program has been around 20 years, version 4.4 is the first public
 release.
 
+-------------------------------------------------------------------------------
+
+BUILDING THE PROGRAM
+
+As I noted above, this program began life in K&R C.  In fact, it was originally
+compiled using Turbo C 2.0 on an MS-DOS computer.  The Makefile is rudimentary
+and not at all "modern;" no autoconf magic here.
+
+You'll need to modify the Makefile to set up compile-time options.  Here's a
+basic rundown:
+
+    -DCURSES_DRIVER
+        Include the curses/ncurses display driver.  You'll need to set
+        an appropriate link flag also.
+
+    -DANSI_DRIVER
+        Include the BBS ANSI driver.
+    
+    -DWARTERM_DRIVER
+        Include the WARTERM driver.  This driver is for an imaginary
+        terminal which was actually intended to be a wrapper program,
+        running the war program as a child and interpreting the codes.
+        This functionality was never really completed, and you can
+        safely omit it.
+    
+    -DAUTHPGM='"/home/$(USER)/bin/authpgm \"%s\" \"%s\""'
+        Specifies the authentication program.  See the BBS INTEGRATION
+        section, below, for details.
+        
+-------------------------------------------------------------------------------
+
+BBS INTEGRATION
+
+WAR was designed to be used on a BBS system, and it provides several ways to
+integrate it with the BBS system.
+
+When the WAR user interface program (named war) starts up, it needs a user ID
+number for the player.  First, war attempts to get the environment variable
+WARID; failing that, it tries the name UID.
+
+If the first five characters of the resulting ID value (if one was found in the 
+environment, of course) is "file ", war then tries to parse the remainder of
+the ID value into a filename, a line number, and a character offset, then opens
+the given file, advances to the given line number and character offset, and
+uses atoi() to read the number it finds there.  This functionality was written
+to support a BBS that I don't even remember working on...
+
+Assuming that whole "file" business doesn't pan out, but an ID value was
+acquired from the environment, war tries to convert it to an integer.
+
+If you build the program without the AUTHPGM defined, then by now you either
+have an ID number or you're about to be ejected from the program.  But if
+you've defined AUTHPGM to point to a program, and war doesn't have a valid ID
+already, war will try to use that program to get the needed ID number.  war
+will prompt for a username and password, and pass them to the AUTHPGM program
+or script using sprintf as the first and second string parameters.  Don't
+forget to include the required %s placeholders, and whatever quotes you need to
+protect the values.  As of right now, the code does not protect against
+injection-type attacks; this really should be fixed.
+
+-------------------------------------------------------------------------------
+
+TERMINAL EMULATION
+
+As noted above, the WAR user interface programs have several display driver
+modules available.  The curses driver is the best choice on Unix/Linux systems,
+while the ANSI driver is probably best for old-fashioned BBS systems (are there
+any of those left?)
+
+If multiple drivers are included in the build, the first enabled in the list
+
+    curses, ansi, warterm
+
+will be used by default UNLESS the environment variable GENIODRV is set to the
+lowercase name of the desired driver; if GENIODRV is defined, it overrides the
+default.  This option works well when one or more players does not have a good
+terminal emulator available, but does have one that will do basic BBS ANSI.
+
