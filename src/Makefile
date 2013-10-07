@@ -49,72 +49,72 @@ clean:
 install: all
 	cp $(TARGETS) /home/$(USER)/bin
 
-ansidrv.o: ansidrv.c
+ansidrv.o: ansidrv.c genio.h
 	$(CC) $(CFLAGS) -c ansidrv.c
 
-combat.o: combat.c
+combat.o: combat.c war.h warext.h function.h reader.h data.h combat.h
 	$(CC) $(CFLAGS) -c combat.c
 
-creator.o: creator.c
+creator.o: creator.c war.h warext.h function.h
 	$(CC) $(CFLAGS) -c creator.c
 
-cursdrv.o: cursdrv.c
+cursdrv.o: cursdrv.c genio.h
 	$(CC) $(CFLAGS) -c cursdrv.c
 
-data.o: data.c
+data.o: data.c war.h function.h data.h
 	$(CC) $(CFLAGS) -c data.c
 
-deserter.o: deserter.c
+deserter.o: deserter.c war.h warext.h function.h data.h
 	$(CC) $(CFLAGS) -c deserter.c
 
-display.o: display.c
+display.o: display.c war.h warext.h genio.h function.h data.h display.h dispsupp.h
 	$(CC) $(CFLAGS) -c display.c
 
-dispsupp.o: dispsupp.c
+dispsupp.o: dispsupp.c war.h warext.h genio.h function.h dispsupp.h
 	$(CC) $(CFLAGS) -c dispsupp.c
 
-execpriv.o: execpriv.c
+execpriv.o: execpriv.c war.h warext.h function.h execsupp.h
 	$(CC) $(CFLAGS) -c execpriv.c
 
 execsupp.o: execsupp.c
 	$(CC) $(CFLAGS) -c execsupp.c
 
-execuser.o: execuser.c
+execuser.o: execuser.c war.h warext.h function.h execsupp.h
 	$(CC) $(CFLAGS) -c execuser.c
 
-genio.o: genio.c
+genio.o: genio.c genio.h
 	$(CC) $(CFLAGS) -c genio.c
 
-mailer.o: mailer.c
+mailer.o: mailer.c war.h genio.h function.h reader.h dispsupp.h
 	$(CC) $(CFLAGS) -c mailer.c
 
-reader.o: reader.c
+reader.o: reader.c genio.h reader.h dispsupp.h
 	$(CC) $(CFLAGS) -c reader.c
 
-savegame.o: savegame.c
+savegame.o: savegame.c war.h warext.h
 	$(CC) $(CFLAGS) -c savegame.c
 
 stdver.o: stdver.c
 	$(CC) $(CFLAGS) -c stdver.c
 
-war.o: war.c
+war.o: war.c war.h warext.h genio.h function.h
 	$(CC) $(CFLAGS) -c war.c
 
-warmap.o: warmap.c
+warmap.o: warmap.c war.h warext.h function.h
 	$(CC) $(CFLAGS) -c warmap.c
 
-warnews.o: warnews.c
+warnews.o: warnews.c war.h dispsupp.h
 	$(CC) $(CFLAGS) -c warnews.c
 
-wartool.o: wartool.c
+wartool.o: wartool.c war.h warext.h display.h dispsupp.h
 	$(CC) $(CFLAGS) -c wartool.c
 
-warupd.o: warupd.c
+warupd.o: warupd.c war.h warext.h function.h combat.h
 	$(CC) $(CFLAGS) -c warupd.c
 
-writemap.o: writemap.c
+writemap.o: writemap.c war.h warext.h function.h
 	$(CC) $(CFLAGS) -c writemap.c
 
-wtermdrv.o: wtermdrv.c
+wtermdrv.o: wtermdrv.c genio.h
 	$(CC) $(CFLAGS) -c wtermdrv.c
 
