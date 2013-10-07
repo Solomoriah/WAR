@@ -3,6 +3,7 @@ CC = gcc
 # CFLAGS = -g -DCURSES_DRIVER -DANSI_DRIVER -DWARTERM_DRIVER -DAUTHPGM='"/home/$(USER)/bin/authpgm \"%s\" \"%s\""'
 CFLAGS = -g -DCURSES_DRIVER -DANSI_DRIVER
 TARGETS = ../bin/war ../bin/warupd ../bin/warnews ../bin/warmap ../bin/wartool
+CURSES = -lcurses
 
 all: $(TARGETS)
 
@@ -29,19 +30,19 @@ TOOLOBJS = wartool.o data.o execpriv.o execsupp.o \
 # OMITTED: wtermdrv.o
 
 ../bin/war: $(WAROBJS)
-	gcc -o ../bin/war $(WAROBJS) -lncurses
+	gcc -o ../bin/war $(WAROBJS) $(CURSES)
 
 ../bin/warupd: $(UPDOBJS)
 	gcc -o ../bin/warupd $(UPDOBJS)
 
 ../bin/warnews: $(NEWSOBJS)
-	gcc -o ../bin/warnews $(NEWSOBJS) -lncurses
+	gcc -o ../bin/warnews $(NEWSOBJS) $(CURSES)
 
 ../bin/warmap: $(MAPOBJS)
-	gcc -o ../bin/warmap $(MAPOBJS) -lncurses
+	gcc -o ../bin/warmap $(MAPOBJS) $(CURSES)
 
 ../bin/wartool: $(TOOLOBJS)
-	gcc -o ../bin/wartool $(TOOLOBJS) -lncurses
+	gcc -o ../bin/wartool $(TOOLOBJS) $(CURSES)
 
 clean:
 	rm -f $(TARGETS) *.o

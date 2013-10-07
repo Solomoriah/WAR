@@ -66,6 +66,7 @@ int main(int argc, char *argv[])
     char filename[64], inbuf[128], name[NATIONNMLEN+1], *p, *u;
     char user[128], pass[128], cmd[128];
     char *getenv();
+    char *gamedir;
     struct stat st_buf;
 
     /* set directory */

@@ -39,7 +39,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <termio.h>
+#include <termios.h>
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -62,7 +62,7 @@ static unsigned char cur_attr;
 static ansi_goto(int x, int y);
 static ansi_attr(int attr);
 
-static struct termio term, save;
+static struct termios term, save;
 
 struct node {
     char ch;
@@ -149,7 +149,7 @@ int ansi_initscr()
 	setbuf(stdin, NULL);
 	ansi_erase();
 
-	ioctl(0, TCGETA, &save);
+	tcgetattr(0, &save);
 
 	term = save;
 
@@ -365,7 +365,7 @@ int ansi_getch()
 
     /* set terminal in raw mode */
 
-	ioctl(0, TCSETA, &term);
+	tcsetattr(0, TCSAFLUSH, &term);
 
     /* get the character */
 
@@ -377,7 +377,7 @@ int ansi_getch()
 
     /* reset terminal */
 
-	ioctl(0, TCSETA, &save);
+	tcsetattr(0, TCSAFLUSH, &save);
 
     /* return character */
 
