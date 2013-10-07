@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     fprintf(stdout,
         "\nWARUPD Version %d.%d  \"Code by Solomoriah\"\n", 
         major_ver, minor_ver);
-    fputs("Copyright 1993, 1994, 2001, Chris Gonnerman\n", stdout);
+    fputs("Copyright 1993, 1994, 2001, 2013, Chris Gonnerman\n", stdout);
     fputs("All Rights Reserved.\n\n", stdout);
 
     
@@ -228,7 +228,7 @@ int main(int argc, char *argv[])
 
     sprintf(filename, GAMEBAK, gen);
 
-    if(rename(GAMESAVE, filename) == -1) {
+    if(stat(GAMESAVE, &st_buf) == 0 && rename(GAMESAVE, filename) == -1) {
         puts("Can't Rename Game Save");
         exit(9);
     }

@@ -193,7 +193,7 @@ int loadmap()
 
 int loadsave()
 {
-    FILE *fp, *ofp;
+    FILE *fp;
     char inbuf[128], *p;
     int cnt, ttcnt, ncnt, acnt, mcnt, nt, i, j;
     size_t nbytes;
@@ -212,18 +212,11 @@ int loadsave()
 
     fp = fopen(GAMESAVE, "r");
 
-    if(fp == NULL) {
+    if(fp == NULL)
         fp = fopen(GAMEORIG, "r");
-        if(fp == NULL)
-            return WAR_OPENERROR;
-        /* create an empty save file, to make warupd happy. */
-        ofp = fopen(GAMESAVE, "w");
-        if(ofp == NULL) {
-            fclose(fp);
-            return WAR_OPENERROR;
-        }
-        fclose(ofp);
-    }
+
+    if(fp == NULL)
+        return WAR_OPENERROR;
 
     if(fgets(inbuf, 128, fp) == NULL) {
         fclose(fp);

@@ -172,6 +172,8 @@ int main(int argc, char *argv[])
 
     uid = 0;
 
+#ifdef USEENV
+
     u = getenv("WARID");
 
     if(u == NULL)
@@ -193,6 +195,14 @@ int main(int argc, char *argv[])
             }
         } else
             uid = atoi(u);
+
+#endif
+
+#ifdef USEGETUID
+
+    uid = getuid();
+
+#endif
 
 #ifdef AUTHPGM
     trys = 3;

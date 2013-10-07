@@ -5,6 +5,7 @@ CFLAGS = -g -DCURSES_DRIVER -DANSI_DRIVER
 TARGETS = ../bin/war ../bin/warupd ../bin/warnews ../bin/warmap ../bin/wartool
 CURSES = -lcurses
 WARPATH = -DWARPATH='"$(HOME)/war"'
+WARFLAGS = -DUSEGETUID
 
 all: $(TARGETS)
 
@@ -100,7 +101,7 @@ stdver.o: stdver.c
 	$(CC) $(CFLAGS) -c stdver.c
 
 war.o: war.c war.h warext.h genio.h function.h
-	$(CC) $(CFLAGS) -c war.c $(WARPATH)
+	$(CC) $(CFLAGS) -c war.c $(WARPATH) $(WARFLAGS)
 
 warmap.o: warmap.c war.h warext.h function.h
 	$(CC) $(CFLAGS) -c warmap.c

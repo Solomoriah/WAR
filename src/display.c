@@ -1022,7 +1022,7 @@ void titlescreen()
         major_ver, minor_ver);
 
     gmove(i+4,10);
-    gputs("Copyright 1993, 1994, 2001, Chris Gonnerman");
+    gputs("Copyright 1993, 1994, 2001, 2013, Chris Gonnerman");
 
     gmove(i+5,10);
     gputs("All Rights Reserved.");
