@@ -57,5 +57,9 @@ int writemap(FILE *fp, int ntn);
 int execpriv(char *line);
 int execuser(char *line);
 
+void savegame(FILE *fp);
+
+void nation_news(char *name, int city);
+
 
 /* end of file. */

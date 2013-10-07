@@ -1,7 +1,7 @@
 /*
-	Solomoriah's WAR!
+    Solomoriah's WAR!
 
-	warnews.c -- news reader
+    warnews.c -- news reader
 
     Copyright 1993, 1994, 2001, 2013 Chris Gonnerman
     All rights reserved.
@@ -42,43 +42,44 @@
 #include <sys/stat.h>
 
 #include "war.h"
+#include "dispsupp.h"
 
 
 int main(int argc, char *argv[])
 {
-	struct stat st_buf;
+    struct stat st_buf;
 
-	/* set directory */
+    /* set directory */
 
-	if(argc > 1)
-		if(chdir(argv[1]) == -1) {
-			gmove(20,18);
-			gprintf("Error Setting Directory %s\n", argv[1]);
-			ggetch();
-			gend();
-			exit(1);
-		}
-	
-	ginit();
+    if(argc > 1)
+        if(chdir(argv[1]) == -1) {
+            gmove(20,18);
+            gprintf("Error Setting Directory %s\n", argv[1]);
+            ggetch();
+            gend();
+            exit(1);
+        }
+    
+    ginit();
 
-	reader(NEWSFL, 0);
+    reader(NEWSFL, 0);
 
-	gend();
+    gend();
 
-	exit(0);
+    exit(0);
 }
 
 
 void mainscreen()
 {
+    ;
 }
 
 
-saystat(s)
-char *s;
+void saystat(char *s)
 {
-	gmove(24, 0);
-	gputs(s);
+    gmove(24, 0);
+    gputs(s);
 }
 
 

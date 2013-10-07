@@ -511,9 +511,7 @@ int newcity()
     does not write the news.
 */
 
-nation_news(name, city)
-char *name;
-int city;
+void nation_news(char *name, int city)
 {
     ;
 }

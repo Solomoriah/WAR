@@ -37,7 +37,7 @@
 */
 
 
-int major_ver = 4, minor_ver = 3;
+int major_ver = 4, minor_ver = 4;
 
 
 /* end of file. */

@@ -46,7 +46,7 @@
 #include "warext.h"
 
 
-savegame(FILE *fp)
+void savegame(FILE *fp)
 {
 	int i, j;
 	char *p;
