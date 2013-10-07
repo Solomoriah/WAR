@@ -42,6 +42,7 @@
 #define CONTROLFILE "control.war"
 #define MAPFILE     "map"
 #define GAMESAVE    "game.sav"
+#define GAMEORIG    "game.orig"
 #define GAMEBAK     "game.%03d"
 #define MASTERFL    "master.cmd"
 #define MASTERBAK   "master.%03d"

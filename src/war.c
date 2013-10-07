@@ -71,15 +71,57 @@ int main(int argc, char *argv[])
 
     /* set directory */
 
-    if(argc > 1)
-        if(chdir(argv[1]) == -1) {
+#ifdef WARPATH
+
+    if(chdir(WARPATH) == -1) {
+        gmove(20,18);
+        gprintf("Error Setting Directory %s\n", WARPATH);
+        ggetch();
+        gend();
+        exit(1);
+    }
+
+#endif
+
+    if(argc > 1) {
+        gamedir = argv[1];
+
+#ifdef WARPATH
+
+        /* in this code, we must restrict the user from leaving the WARPATH directory */
+        /* and actually we'll limit the user to a single subdirectory under it */
+
+        /* ".." in the middle of the gamedir will be effectively blocked below */
+        /* (as slashes would be needed to make it useful) */
+        if(gamedir[0] == '.' && gamedir[1] == '.' && gamedir[2] == '\0') {
             gmove(20,18);
-            gprintf("Error Setting Directory %s\n", argv[1]);
+            gprintf("Invalid Directory Name %s\n", gamedir);
             ggetch();
             gend();
             exit(1);
         }
-    
+
+        for(p = gamedir; *p; p++) {
+            if(*p == '/' || *p == '\\' || *p == ':') {
+                gmove(20,18);
+                gprintf("Invalid Directory Name %s\n", gamedir);
+                ggetch();
+                gend();
+                exit(1);
+            }
+        }
+
+#endif
+
+        if(chdir(gamedir) == -1) {
+            gmove(20,18);
+            gprintf("Error Setting Directory %s\n", gamedir);
+            ggetch();
+            gend();
+            exit(1);
+        }
+    }
+
     /* set up screen */
 
     ginit();
@@ -135,7 +177,7 @@ int main(int argc, char *argv[])
     if(u == NULL)
         u = getenv("UID");
 
-    if(u != NULL) 
+    if(u != NULL)
         if(strncmp(u, "file ", 5) == 0) {
             /* read UID from file */
             line = 0;

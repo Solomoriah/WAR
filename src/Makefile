@@ -4,6 +4,7 @@ CC = gcc
 CFLAGS = -g -DCURSES_DRIVER -DANSI_DRIVER
 TARGETS = ../bin/war ../bin/warupd ../bin/warnews ../bin/warmap ../bin/wartool
 CURSES = -lcurses
+WARPATH = -DWARPATH='"$(HOME)/war"'
 
 all: $(TARGETS)
 
@@ -99,13 +100,13 @@ stdver.o: stdver.c
 	$(CC) $(CFLAGS) -c stdver.c
 
 war.o: war.c war.h warext.h genio.h function.h
-	$(CC) $(CFLAGS) -c war.c
+	$(CC) $(CFLAGS) -c war.c $(WARPATH)
 
 warmap.o: warmap.c war.h warext.h function.h
 	$(CC) $(CFLAGS) -c warmap.c
 
 warnews.o: warnews.c war.h dispsupp.h
-	$(CC) $(CFLAGS) -c warnews.c
+	$(CC) $(CFLAGS) -c warnews.c $(WARPATH)
 
 wartool.o: wartool.c war.h warext.h display.h dispsupp.h
 	$(CC) $(CFLAGS) -c wartool.c

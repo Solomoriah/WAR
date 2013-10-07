@@ -36,6 +36,7 @@
 
 MAPFILE =   "map"
 GAMESAVE =  "game.sav"
+GAMEORIG =  "game.orig"
 GAMEBAK =   "game.%03d"
 MASTERFL =  "master.cmd"
 MASTERBAK = "master.%03d"
