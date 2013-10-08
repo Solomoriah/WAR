@@ -1,35 +1,26 @@
 
-CC = gcc
-# CFLAGS = -g -DCURSES_DRIVER -DANSI_DRIVER -DWARTERM_DRIVER -DAUTHPGM='"/home/$(USER)/bin/authpgm \"%s\" \"%s\""'
-CFLAGS = -g -DCURSES_DRIVER -DANSI_DRIVER
-TARGETS = ../bin/war ../bin/warupd ../bin/warnews ../bin/warmap ../bin/wartool
-CURSES = -lcurses
-WARPATH = -DWARPATH='"$(HOME)/war"'
-WARFLAGS = -DUSEGETUID
+include .settings
 
 all: $(TARGETS)
 
 WAROBJS = war.o display.o data.o reader.o execpriv.o \
-    mailer.o execsupp.o dispsupp.o \
-    stdver.o genio.o ansidrv.o cursdrv.o writemap.o
-# OMITTED: wtermdrv.o
+    mailer.o execsupp.o dispsupp.o stdver.o genio.o writemap.o \
+	$(DRIVERS)
 
 UPDOBJS = warupd.o data.o execpriv.o execsupp.o execuser.o \
-    combat.o deserter.o creator.o \
-    stdver.o savegame.o
+    combat.o deserter.o creator.o stdver.o savegame.o
 
 NEWSOBJS = warnews.o reader.o \
-    stdver.o execsupp.o genio.o ansidrv.o cursdrv.o
-# OMITTED: wtermdrv.o
+    stdver.o execsupp.o genio.o \
+	$(DRIVERS)
 
 MAPOBJS = warmap.o data.o execpriv.o execsupp.o \
-    stdver.o savegame.o genio.o ansidrv.o cursdrv.o
-# OMITTED: wtermdrv.o
+    stdver.o savegame.o genio.o \
+	$(DRIVERS)
 
 TOOLOBJS = wartool.o data.o execpriv.o execsupp.o \
-    stdver.o display.o dispsupp.o savegame.o \
-    genio.o ansidrv.o cursdrv.o
-# OMITTED: wtermdrv.o
+    stdver.o display.o dispsupp.o savegame.o genio.o \
+	$(DRIVERS)
 
 ../bin/war: $(WAROBJS)
 	gcc -o ../bin/war $(WAROBJS) $(CURSES)
