@@ -25,8 +25,13 @@ As I noted above, this program began life in K&R C.  In fact, it was originally
 compiled using Turbo C 2.0 on an MS-DOS computer.  The Makefile is rudimentary
 and not at all "modern;" no autoconf magic here.
 
-You'll need to modify the Makefile to set up compile-time options.  Here's a
-basic rundown:
+You'll need to modify the Makefile to set up compile-time options.  The
+Makefile includes a file named .settings which can be used as an override; I
+omit it from the git repository so that I can have several different working
+repos with different build settings and still push them to a central location.
+
+Here's a basic rundown of the standard #define values, as they would appear
+in the Makefile:
 
     -DCURSES_DRIVER
         Include the curses/ncurses display driver.  You'll need to set
@@ -42,10 +47,26 @@ basic rundown:
         This functionality was never really completed, and you can
         safely omit it.
     
+    -DWARPATH='"$(HOME)/war"'
+        Specifies the location of the game data (i.e. "world") files.
+        If a world directory is specified on the command line of the
+        war command (or any other interactive commands in the suite),
+        that directory must be a single level below the WARPATH.  If
+        WARPATH is not set, the game data folder may be specified as
+        a full path on the war command line.  The warupd command does
+        not use this variable... you must always specify a correct
+        path to the game data for warupd.
+
     -DAUTHPGM='"/home/$(USER)/bin/authpgm \"%s\" \"%s\""'
-        Specifies the authentication program.  See the BBS INTEGRATION
+        Specifies the authorization program.  See the BBS INTEGRATION
         section, below, for details.
         
+    -DUSEENV
+        Use the WARID or UID environment variables for authorization.
+
+    -DUSEGETUID
+        Use the getuid() function for authorization.
+
 -------------------------------------------------------------------------------
 
 BBS INTEGRATION
@@ -54,28 +75,40 @@ WAR was designed to be used on a BBS system, and it provides several ways to
 integrate it with the BBS system.
 
 When the WAR user interface program (named war) starts up, it needs a user ID
-number for the player.  First, war attempts to get the environment variable
-WARID; failing that, it tries the name UID.
+number for the player; there are several strategies for doing this, which all
+depend on how the war command is compiled.
 
-If the first five characters of the resulting ID value (if one was found in the 
-environment, of course) is "file ", war then tries to parse the remainder of
-the ID value into a filename, a line number, and a character offset, then opens
-the given file, advances to the given line number and character offset, and
-uses atoi() to read the number it finds there.  This functionality was written
-to support a BBS that I don't even remember working on...
+If USEENV is defined:
+    First, war attempts to get the environment variable WARID; failing that, it
+    tries the name UID.
+    
+    If the first five characters of the resulting ID value (if one was found in
+    the environment, of course) is "file ", war then tries to parse the
+    remainder of the ID value into a filename, a line number, and a character
+    offset, then opens the given file, advances to the given line number and
+    character offset, and uses atoi() to read the number it finds there.  This
+    functionality was written to support a BBS that I don't even remember
+    working on...
 
-Assuming that whole "file" business doesn't pan out, but an ID value was
-acquired from the environment, war tries to convert it to an integer.
+    Assuming that whole "file" business doesn't pan out, but an ID value was
+    acquired from the environment, war tries to convert it to an integer.
 
-If you build the program without the AUTHPGM defined, then by now you either
-have an ID number or you're about to be ejected from the program.  But if
-you've defined AUTHPGM to point to a program, and war doesn't have a valid ID
-already, war will try to use that program to get the needed ID number.  war
-will prompt for a username and password, and pass them to the AUTHPGM program
-or script using sprintf as the first and second string parameters.  Don't
-forget to include the required %s placeholders, and whatever quotes you need to
-protect the values.  As of right now, the code does not protect against
-injection-type attacks; this really should be fixed.
+If USEGETUID is defined:
+    war gets the user's current Unix/Linux id number using the getuid() system
+    call; in this case, logging in to the user account is considered enough
+    authentication.
+
+If AUTHPGM is defined:
+    war will try to use that program to get the needed ID number.  war will
+    prompt for a username and password, and pass them to the AUTHPGM program or
+    script using sprintf as the first and second string parameters.  Don't
+    forget to include the required %s placeholders, and whatever quotes you
+    need to protect the values.  As of right now, the code does not protect
+    against injection-type attacks; this really should be fixed.
+
+war tries any or all of the above methods, in the order given, if they are
+activated by the appropriate #define values.  However, as they are generally
+mutually exclusive, it really only makes sense to activate one of them.
 
 -------------------------------------------------------------------------------
 

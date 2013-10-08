@@ -1,5 +1,17 @@
 
-include .settings
+# default settings
+CC = gcc
+CFLAGS = -g -DCURSES_DRIVER -DANSI_DRIVER
+# OMITTED: -DWARTERM_DRIVER
+TARGETS = ../bin/war ../bin/warupd ../bin/warnews ../bin/warmap ../bin/wartool
+CURSES = -lncurses
+WARPATH = -DWARPATH='"$(HOME)/war"'
+WARFLAGS = -DUSEGETUID
+DRIVERS = ansidrv.o cursdrv.o
+# OMITTED: wtermdrv.o
+
+# local overrides
+-include .settings
 
 all: $(TARGETS)
 
