@@ -1108,6 +1108,9 @@ void info_mode(int *rp, int *cp, int n, int ch)
 
         switch(ch) {
 
+        case 'i' :
+            break;
+
         case '7' :
         case 'y' :
             f_r--;
