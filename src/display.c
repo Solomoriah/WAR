@@ -1073,7 +1073,7 @@ void produce(int city)
 
 void info_mode(int *rp, int *cp, int n, int ch)
 {
-    int done, firsttime, r, c, ul_r, ul_c, f_r, f_c, t_r, t_c;
+    int done, r, c, ul_r, ul_c, f_r, f_c, t_r, t_c;
     int city, army, i, flag;
     int rem;
 
@@ -1102,7 +1102,6 @@ void info_mode(int *rp, int *cp, int n, int ch)
     f_c = (c % gran) + rem;
 
     done = 0;
-    firsttime = 1;
 
     do {
         flag = 1;
@@ -1173,7 +1172,7 @@ void info_mode(int *rp, int *cp, int n, int ch)
         city = my_city_at(t_r, t_c, n);
         army = my_army_at(t_r, t_c, n);
 
-        if(!firsttime && (city >= 0 || army >= 0)) {
+        if(ch != 'i' && (city >= 0 || army >= 0)) {
             showfocus(*rp, *cp, 0);
             r = *rp = t_r;
             c = *cp = t_c;
@@ -1197,8 +1196,6 @@ void info_mode(int *rp, int *cp, int n, int ch)
 
         if(!done)
             ch = ggetch();
-
-        firsttime = 0;
 
     } while(!done);
 
