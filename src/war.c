@@ -288,6 +288,15 @@ int main(int argc, char *argv[])
 
     if(n == -1) { /* nation not entered yet... */
 
+        if(gen > 10) {
+            gmove(20,10);
+            gprintf("Game has been running %d turns, too late to enter now.", gen);
+            gclrline();
+            ggetch();
+            gend();
+            exit(5);
+        }
+
         c = newcity();
 
         if(c >= 0) {
