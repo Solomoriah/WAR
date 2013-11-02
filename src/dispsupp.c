@@ -305,8 +305,8 @@ void status()
     gmove(1, 20);
     gputs("Nation Status Display");
 
-    gmove(3, 1);    gputs("Nation:");
-    gmove(4, 1);    gputs("Ruler:");
+    gmove(3, 1);    gputs("Ruler:");
+    gmove(4, 1);    gputs("Nation:");
     gmove(5, 1);    gputs("Mark:");
     gmove(7, 1);    gputs("Cities:");
     gmove(8, 1);    gputs("Heros:");
@@ -329,10 +329,10 @@ void status()
         for(i = 0; i < 4; i++)
             if(pos + 1 + i < nationcnt) {
                 gmove(3, i * 16 + 16);
-                gputs(nationcity(pos+1+i));
+                gputs(nations[pos+1+i].name);
 
                 gmove(4, i * 16 + 16);
-                gputs(nations[pos+1+i].name);
+                gputs(nationcity(pos+1+i));
 
                 gmove(5, i * 16 + 19);
                 gputch(marks[0][nations[pos+1+i].mark]);
