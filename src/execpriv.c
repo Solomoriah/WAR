@@ -369,6 +369,11 @@ static int seteparm(int argc, char *argv[])
 
     a = atoi(argv[1]);
 
+    if(a < 0 || a >= MAXARMIES) {
+        fprintf(stdout, "ERROR set-eparm %d %s\n", a, argv[2]);
+        return 0;
+    }
+
     if(armies[a].nation == -1)
         return 0;
 
