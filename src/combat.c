@@ -280,7 +280,7 @@ void battle(int a, int b)
 				d = hi;
 			} else {
 				sprintf(buff, "set-eparm %d %d\n",
-					stacks[d].index[hi], 1);
+					stacks[rlose].index[hi], 1);
 				fputs(buff, mfile);
 				execpriv(buff);
 			}
